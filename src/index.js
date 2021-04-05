@@ -4,7 +4,7 @@ import express from 'express';
 import { sequelize } from './db/models';
 import middlewareConfig from './db/config/middlewares';
 import config from './db/config/config';
-import { UserRoutes } from './modules';
+import { UserRoutes, WaitingListRoutes } from './modules';
 
 const { port } = config;
 
@@ -16,6 +16,7 @@ app.all('/', (req, res) => res.status(200).send({
 }));
 
 app.use('/api/v1/users', UserRoutes);
+app.use('/api/v1/waiting-list', WaitingListRoutes);
 
 app.listen(port, async () => {
   console.log(`Welcome, listening on ${port}`);
