@@ -60,14 +60,44 @@ export const authValidator = {
       .isLength({ min: 3, max: 20 })
       .withMessage('First name must be between 3 and 20 characters.'),
   ],
-  phoneNumber: [
+  firstnameValidator: [
+    body('firstname')
+      .trim()
+      .exists({ checkFalsy: true })
+      .withMessage('firstname is required.')
+      .matches(/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/)
+      .withMessage('Invalid name.')
+      .isLength({ min: 3, max: 20 })
+      .withMessage('First name must be between 3 and 20 characters.'),
+  ],
+  lastnameValidator: [
+    body('lastname')
+      .trim()
+      .exists({ checkFalsy: true })
+      .withMessage('lastname is required.')
+      .matches(/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/)
+      .withMessage('Invalid name.')
+      .isLength({ min: 3, max: 20 })
+      .withMessage('Last name must be between 3 and 20 characters.'),
+  ],
+  phoneNumberValidator: [
     body('phoneNumber')
       .trim()
       .exists({ checkFalsy: true })
       .withMessage('phone number is required.')
-      .matches(/^\d{11}$/)
+      .matches(/^[0-9]{1,13}$/)
       .withMessage('Invalid phone number.')
-      .isLength({ min: 11, max: 11 })
+      .isLength({ min: 11, max: 13 })
+      .withMessage('Phone numbers must be 11 charaters long.'),
+  ],
+  phoneValidator: [
+    body('phone')
+      .trim()
+      .exists({ checkFalsy: true })
+      .withMessage('phone number is required.')
+      .matches(/^[0-9]{1,13}$/)
+      .withMessage('Invalid phone number.')
+      .isLength({ min: 11, max: 13 })
       .withMessage('Phone numbers must be 11 charaters long.'),
   ],
   amountValidator: [
